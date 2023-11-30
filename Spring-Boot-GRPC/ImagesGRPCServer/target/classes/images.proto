@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_package = "com.othman.grpc.stubs";
+
+
+
+message StreamImageRequest {
+  int32 id = 1;
+}
+
+message ImageChunk {
+  bytes chunkData = 1;
+}
+
+
+service ImageService {
+  rpc StreamImageChunks(StreamImageRequest) returns (stream ImageChunk);
+}
