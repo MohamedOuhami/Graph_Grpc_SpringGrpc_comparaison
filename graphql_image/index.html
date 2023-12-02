@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GraphQL Image Server</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #imageContainer {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .imageContainer {
+      margin: 10px;
+      text-align: center;
+    }
+
+    img {
+      width: 200px;
+      margin-right: 10px;
+    }
+
+    a {
+      display: block;
+      margin-top: 5px;
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Images Gallery</h1>
+  <div id="imageContainer"></div>
+
+  <script>
+    // Fetch images from GraphQL server
+    fetch('http://localhost:3000/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: '{ images { id, data } }' }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('JSON response from server:', data);
+
+      const imageContainer = document.getElementById('imageContainer');
+      if (data.data && data.data.images) {
+        data.data.images.forEach(image => {
+          if (image.data) {
+            // Create image element
+            const imgElement = document.createElement('img');
+            imgElement.src = `data:image/jpeg;base64,${image.data}`;
+
+            // Create download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = `data:image/jpeg;base64,${image.data}`;
+            downloadLink.download = `image_${image.id}.jpg`;
+            downloadLink.innerText = `Download High-Res Image ${image.id}`;
+
+            // Create container for image and download link
+            const container = document.createElement('div');
+            container.classList.add('imageContainer');
+            container.appendChild(imgElement);
+            container.appendChild(downloadLink);
+
+            // Add container to image container
+            imageContainer.appendChild(container);
+          }
+        });
+      }
+    })
+    .catch(error => console.error('Error fetching images:', error));
+  </script>
+</body>
+</html>
