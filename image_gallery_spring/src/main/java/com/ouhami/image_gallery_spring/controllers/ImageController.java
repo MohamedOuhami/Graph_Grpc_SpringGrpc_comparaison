@@ -20,6 +20,7 @@ public class ImageController {
     // Get all images
     @GetMapping
     public List<Image> getAllImages() {
+        System.out.println(imageRepository.findAll());
         return imageRepository.findAll();
     }
 
@@ -31,7 +32,6 @@ public class ImageController {
     }
 
     // Create a new image
-    
     @PostMapping
     public Image createImage(@RequestBody Image image) {
         System.out.println(image);

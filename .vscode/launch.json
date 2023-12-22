@@ -1,0 +1,47 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ImageGalleryGraphqlApplication",
+            "request": "launch",
+            "mainClass": "com.ouhami.image_gallery_spring.ImageGalleryGraphqlApplication"
+        },
+        {
+            "type": "java",
+            "name": "ImageGallerySpringApplication",
+            "request": "launch",
+            "mainClass": "com.ouhami.image_gallery_spring.ImageGallerySpringApplication"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ImageGallerySpringApplication<image_gallery_spring>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ouhami.image_gallery_spring.ImageGallerySpringApplication",
+            "projectName": "image_gallery_spring",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=38191 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=image_gallery_spring"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBootGrpcImageSenderApplication<SpringBootGRPCImageSender>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.springbootgrpcimagesender.SpringBootGrpcImageSenderApplication",
+            "projectName": "SpringBootGRPCImageSender",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ImageGalleryGraphqlApplication<com.ouhami-image_gallery_spring>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ouhami.image_gallery_graphql.ImageGalleryGraphqlApplication",
+            "projectName": "com.ouhami-image_gallery_spring",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+# schema.graphql
+
+type Query {
+    images: [Image]
+    imageById(id: Int!): Image
+    imagesWithBase64Content: [ImageWithBase64]
+}
+
+type Image {
+    id: Int!
+    imageData: ImageData!
+    imageDataString: String!
+}
+
+type ImageData {
+    content: String!
+}
+
+type ImageWithBase64 {
+    id: Int!
+    imageData: ImageData!
+    imageDataString: String!
+}
+
+type Mutation {
+    createImage(image: ImageInput): Image
+    deleteImage(id: Int!): Boolean
+}
+
+input ImageInput {
+    imageData: String!
+}
